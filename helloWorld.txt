@@ -12,3 +12,12 @@ HEY ALL!!
 
 My Branch-- Chris Testing pushing to remote branch
 
+I have created a branch for everyone to push their own changes to . 
+jess
+tayler
+steph
+JCK
+
+you can 
+git pull origin (branchname) 
+git push origin (branchname)
