@@ -48,4 +48,3 @@ end
 prompt()
 
 
-puts @items[0].name
