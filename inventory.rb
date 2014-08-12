@@ -1,6 +1,6 @@
  
 class Item
-  attr_accessor :name, :initCount
+  attr_accessor :name, :count
  def initialize (name,initCount )
   @name=name.downcase
   @count=initCount
@@ -17,34 +17,57 @@ class Item
 end
 
 def prompt()
-  puts "(A)dd item (R)emove item (L)ist items (I)ncrease item (D)ecrease items"
-  select= gets.chomp
-  if (select.upcase=="A")
-  puts "Item name"
-  name=gets.chomp  
+puts @items.inspect
+  puts " (A)dd item\n (R)emove item\n (L)ist items\n (I)ncrease item\n (D)ecrease items\n (Q)uit "
+  select = [(print '?: '), gets.rstrip][1]
+ 
+if (select.upcase=="Q")
+   exit
+
+  elsif (select.upcase=="A")
+  puts "Add Item\nItem name"
+  name=[(print 'Name? : '), gets.rstrip][1]
   puts "Initial Count"
-  count= gets.chomp
+  count= [(print 'Count? : '), gets.rstrip][1]
   @items.push(Item.new(name,count.to_i))
-  puts @items.inspect
+  
   prompt()
 elsif (select.upcase=="I")
   puts "Item Name"
-  name=gets.chomp.downcase
+  name=[(print 'Name? : '), gets.rstrip][1].downcase
   match_index = @items.index(@items.find { |l| l.name == name })
-  puts "Name #{name} Index #{match_index}   Increase amount?"
-  amount=gets.chomp
-
+  if (match_index)  
+   
+puts "Item #{name} Count #{@items[match_index].count}"
+  amount=[(print 'Increase amount? : '), gets.rstrip][1]
   @items[match_index].add(amount.to_i)
-  puts @items.inspect
-  prompt()
+  else 
+   puts "That item is not counted"
+	end
+
+elsif (select.upcase=="I")
+  puts "Item Name"
+  name=[(print 'Name? : '), gets.rstrip][1].downcase
+  match_index = @items.index(@items.find { |l| l.name == name })
+  if (match_index)  
+   
+puts "Item #{name} Count #{@items[match_index].count}"
+  amount=[(print 'Increase amount? : '), gets.rstrip][1]
+  @items[match_index].add(amount.to_i)
+  else 
+   puts "That item is not counted"
+end
+
+
+
+ 
   end  
+  prompt()
 end
 
 
 @items=[]
-@items.push(Item.new('Pens', 10))
-@items.push(Item.new('Cars', 15))
+
 
 prompt()
-
 
