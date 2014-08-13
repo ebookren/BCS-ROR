@@ -43,7 +43,14 @@ puts @items.inspect
 
 if (select.upcase=="Q") then
    exit
-  end
+  end  
+
+if (select.upcase=="L") then
+  puts "ITEM  NAME \t COUNT"
+  @items.each do |item|
+    puts "#{item.name}\t \t  #{item.count}"
+    end
+end
 
 if (select.upcase=="I") then
   puts "Item Name"
