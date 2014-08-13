@@ -17,7 +17,7 @@ class Item
 end
 
 def prompt()
-puts @items.inspect
+
   puts " (A)dd item\n (R)emove item\n (L)ist items\n (I)ncrease item\n (D)ecrease items\n (Q)uit "
   select = [(print '?: '), gets.rstrip][1]
  
@@ -41,9 +41,6 @@ puts @items.inspect
 
   end  
 
-if (select.upcase=="Q") then
-   exit
-  end  
 
 if (select.upcase=="L") then
   puts "ITEM  NAME \t COUNT"
@@ -81,6 +78,10 @@ puts "Item #{name} Count #{@items[match_index].count}"
 	end
   
 end
+
+if (select.upcase=="Q") then
+   exit
+  end  
 
 
   prompt()
