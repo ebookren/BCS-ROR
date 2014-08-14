@@ -4,6 +4,7 @@ attr_accessor :name, :count
 def initialize (name,initCount )
  @name=name.downcase
  @count=initCount
+ require 'yaml'
 end
 
 def add(amount)
@@ -36,6 +37,10 @@ if (select.upcase=="Q")
  puts "Initial Count"
  count= [(print 'Count? : '), gets.rstrip][1]
  @items.push(Item.new(name,count.to_i))
+
+ elsif (select.upcase=="L")
+puts @items.to_yaml
+
 
 elsif (select.upcase=="I")
  puts "Item Name"
