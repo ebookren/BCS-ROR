@@ -27,7 +27,7 @@ puts @items.inspect
   name=[(print 'Name? : '), gets.rstrip][1]
   puts "Initial Count"
   count= [(print 'Count? : '), gets.rstrip][1]
-  @items.push(Item.new(name,count.to_i))
+  @items.push(Item.new(name,count.to_i)) unless @items.index(@items.find { |l| l.name == name })
 
   end
 
