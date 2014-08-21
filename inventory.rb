@@ -21,15 +21,18 @@ puts @items.inspect
  select = [(print '?: '), gets.rstrip][1]
 
 
- if (select.upcase=="A") then
+  if (select.upcase=="A") then
 puts "Add Item\nItem name"
 name=[(print 'Name? : '), gets.rstrip][1]
 puts "Initial Count"
 count= [(print 'Count? : '), gets.rstrip][1]
-@items.push(Item.new(name,count.to_i)) unless @items.index(@items.find { |l| l.name == name })
+   if @items.index(@items.find { |l| l.name == name }) 
+     puts "You've already added that item"
+   else
+     @items.push(Item.new(name,count.to_i)) 
+   end
 
-
- end
+  end
 
  if (select.upcase=="R") then
  puts "Remove Item\nItem name"
