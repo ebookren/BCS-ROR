@@ -1,33 +1,33 @@
- 
 class Item
   attr_accessor :name, :count
  def initialize (name,initCount )
    if (initCount<0) then
      initCount=0
-   end
+   end # if
   @name=name.downcase
   @count=initCount
- end
+ end  # init
 
  def add(amount)
    if (amount<0) then
      amount=0
      puts "You can's increase by a negative number"
-   end
+   end  #if
    
  @count += amount
- end
+ end  #add
 
  def sub(amount)
    if (amount<0) then
      amount=0
      puts "You can't decrease by a negative number"
-   end
+   end  #if
  @count -= amount
- end
+ end  #sub
    
-end
+end  #class
 
+@items=[]
 def prompt()
 puts @items.inspect
   puts " (A)dd item\n (R)emove item\n (L)ist items\n (I)ncrease item\n (D)ecrease items\n (Q)uit "
@@ -41,7 +41,7 @@ puts @items.inspect
   count= [(print 'Count? : '), gets.rstrip][1]
   @items.push(Item.new(name,count.to_i))
 
-  end
+  end #if a
   
   if (select.upcase=="R") then
   puts "Remove Item\nItem name"
@@ -51,22 +51,22 @@ puts @items.inspect
     @items.delete_at(match_index)
   end
 
-  end  
+  end  #if r
 
-if (select.upcase=="Q") then
+
   if (select.upcase=="Q") then
     File.open('itemFile', "w") do |file|
       Marshal.dump(@items, file)
-    end
+    end #do
    exit
-  end  
+  end   #if q
 
 if (select.upcase=="L") then
   puts "ITEM  NAME \t COUNT"
   @items.each do |item|
     puts "#{item.name}\t \t  #{item.count}"
-    end
-end
+    end #do
+end  #if L
 
 if (select.upcase=="I") then
   puts "Item Name"
@@ -79,9 +79,9 @@ puts "Item #{name} Count #{@items[match_index].count}"
   @items[match_index].add(amount.to_i)
   else 
    puts "That item is not counted"
-	end
+	end  #if match
   
-end
+end   #if I
 
 if (select.upcase=="D") then
   puts "Item Name"
@@ -94,23 +94,21 @@ puts "Item #{name} Count #{@items[match_index].count}"
   @items[match_index].sub(amount.to_i)
   else 
    puts "That item is not counted"
-	end
+	end   #if match
   
-end
+end  #if D
 
-
+puts "prompt "
   prompt()
-end
+end   #prompt
 
-
-@items=[]
+puts "if file exists"
 itemFile= if File.exists?('itemFile')
   File.open('itemFile') do |file|
     @items=Marshal.load(file)
   end
 else
   0
-end
+end # if file
 
 prompt()
-
